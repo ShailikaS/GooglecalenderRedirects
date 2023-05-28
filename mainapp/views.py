@@ -46,37 +46,13 @@ class GoogleCalendarRedirectView(View):
         # Get a list of events from the user's calendar
         events = service.events().list(calendarId='primary').execute()
 
-        # Process the events as required
-        # ...
+        # Process the events as require
 
         return redirect('/')
 
-# Google Calendar API scope
-''''SCOPES = ['https://www.googleapis.com/auth/calendar.readonly']
 
-class GoogleCalendarInitView(APIView):
-    def get(self, request):
-        flow = InstalledAppFlow.from_client_secrets_file(settings.CLIENT_SECRET_FILE, SCOPES)
-        auth_url, _ = flow.authorization_url(prompt='consent')
-        return Response({'auth_url': auth_url})
 
-class GoogleCalendarRedirectView(APIView):
-    def get(self, request):
-        flow = InstalledAppFlow.from_client_secrets_file(settings.CLIENT_SECRET_FILE, SCOPES)
-        flow.fetch_token(authorization_response=request.build_absolute_uri())
-        credentials = flow.credentials
-        service = build('calendar', 'v3', credentials=credentials)
 
-        # Retrieve list of events from the calendar
-        events_result = service.events().list(calendarId='primary', maxResults=10).execute()
-        events = events_result.get('items', [])
-
-        # Process and return the events
-        event_list = []
-        for event in events:
-            event_list.append(event['summary'])
-
-        return Response({'events': event_list})'''
 
     
 
